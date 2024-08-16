@@ -6,7 +6,6 @@ import Model from "./components/Model"
 import Features from "./components/Features"
 import HowItWorks from "./components/HowItWorks"
 import Footer from "./components/Footer"
-import Smoke from "./components/Smoke"
 
 const App = () => {
 
@@ -30,7 +29,6 @@ const App = () => {
             <>
               <Routes>
                 <Route path='/model' element={<Model />} />
-                <Route path='/smoke' element={<Smoke />} />
               </Routes>
             </>
           }
