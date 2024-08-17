@@ -25,9 +25,10 @@ const VideoCarousel = () => {
 
     useGSAP(() => {
         // slider animation to move the video out of the screen and bring the next video in
+        console.log('video End', videoId)
         gsap.to('#slider', {
             transform: `translateX(${-100 * videoId}%)`,
-            duration: 2,
+            duration: 1.5,
             ease: 'power2.inOut' // show visualizer https://gsap.com/docs/v3/Eases
         })
 
@@ -44,18 +45,6 @@ const VideoCarousel = () => {
             }
         })
     }, [isEnd, videoId])
-
-    useEffect(() => {
-        if (loaderData.length > 3) {
-            if (!isPlaying) {
-                videoRef.current[videoId].pause()
-            } else {
-                startPlay && videoRef.current[videoId].play()
-            }
-        }
-    }, [startPlay, videoId, isPlaying, loaderData])
-
-    const handleLoaderMeteData = (i, event) => setLoaderData(prev => [...prev, event])
 
     useEffect(() => {
         let currentProgress = 0
@@ -106,7 +95,7 @@ const VideoCarousel = () => {
             // update the progress bar
             const animUpdate = () => {
                 anim.progress(
-                    videoRef?.current[videoId]?.currentTime / videoSlides[videoId].videoDuration
+                    videoRef?.current[videoId].currentTime / videoSlides[videoId].videoDuration
                 )
             }
 
@@ -121,8 +110,18 @@ const VideoCarousel = () => {
         }
     }, [videoId, startPlay])
 
+    useEffect(() => {
+        if (loaderData.length > 3) {
+            if (!isPlaying) {
+                videoRef.current[videoId].pause()
+            } else {
+                startPlay && videoRef.current[videoId].play()
+            }
+        }
+    }, [startPlay, videoId, isPlaying, loaderData])
+
     // video id is the id for every video until id becomes number 3
-    const handleProcess = (type, i) => {
+    function handleProcess(type, i) {
         switch (type) {
 
             case 'video-end':
@@ -158,6 +157,8 @@ const VideoCarousel = () => {
                 return video
         }
     }
+
+    const handleLoaderMeteData = (i, event) => setLoaderData(prev => [...prev, event])
 
     return (
         <>
@@ -225,7 +226,7 @@ const VideoCarousel = () => {
                             : () => handleProcess('pause')}>
                     <img
                         src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
-                        alt={isLastVideo ? 'repaly' : !isPlaying ? 'play' : 'pause'}
+                        alt={isLastVideo ? 'replay' : !isPlaying ? 'play' : 'pause'}
                     />
                 </button>
             </div>
