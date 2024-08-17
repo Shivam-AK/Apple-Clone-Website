@@ -2,13 +2,14 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { rightImg, watchImg } from '../utils'
 import VideoCarousel from './VideoCarousel'
+import { animateWithGsap } from '../utils/animations'
 
 const Highlights = () => {
 
     useGSAP(() => {
-        gsap.to('#title', { opacity: 1, y: 0 })
-        gsap.to('.link', { opacity: 1, y: 0, duration: .5, stagger: .25 })
-    })
+        animateWithGsap('#title', { opacity: 1, y: 0 })
+        animateWithGsap('.link', { opacity: 1, y: 0, duration: .5, stagger: .25 })
+    }, [])
 
     return (
         <section id='highlights' className='w-screen h-full common-padding overflow-hidden bg-zinc'>

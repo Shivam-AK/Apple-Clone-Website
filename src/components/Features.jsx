@@ -21,7 +21,7 @@ const Features = () => {
       }
     })
 
-    animateWithGsap('#features_title', { opacity: 1, top: 100 })
+    animateWithGsap('#features_title', { opacity: 1, top: 0, delay: .5 })
     animateWithGsap('.g_grow', {scale: 1, opacity: 1, ease: 'power1'}, {scrub: 5.5})
     animateWithGsap('.g_text', {y: 0, opacity: 1, ease: 'power.inOut', duration: 1})
   })
@@ -30,7 +30,7 @@ const Features = () => {
     <section className='h-full common-padding bg-black overflow-hidden relative'>
       <div className='screen-max-width'>
         <div className='mb-12 w-full'>
-          <h2 id='features_title' className='section-heading'>Explore The Full Story.</h2>
+          <h2 id='features_title' className='section-heading relative top-20'>Explore The Full Story.</h2>
 
           <div className='flex flex-col justify-center items-center overflow-hidden '>
             <div className='mb-24 mt-32 pl-24'>

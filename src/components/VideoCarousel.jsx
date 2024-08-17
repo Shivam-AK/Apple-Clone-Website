@@ -125,7 +125,7 @@ const VideoCarousel = () => {
         switch (type) {
 
             case 'video-end':
-                setVideo(prevVideo => ({ ...prevVideo, isEnd: true, videoId: i + 1 }))
+                setVideo(prevVideo => ({ ...prevVideo, isEnd: true, videoId: i + 1 })) // i + 1 !important
                 console.log('video-end', i)
                 break
 
