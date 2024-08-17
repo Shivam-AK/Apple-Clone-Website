@@ -19,14 +19,14 @@ body {
 }
 
 @-moz-document url-prefix() {
-  #root {
+  html {
     scrollbar-color: rgb(0, 255, 255) rgb(107, 107, 107);
     scrollbar-width: thin;
   }
 }
 
 body::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 
 body::-webkit-scrollbar-track {
@@ -58,35 +58,9 @@ canvas {
   transition: all 0.25s ease-in-out;
 }
 
-@keyframes smoke {
-  0% {
-    opacity: 0.5;
-    /* scale: 1.5; */
-    filter: blur(30px);
-    transform: translateX(0)
-  }
-
-  50% {
-    transform: translateX(100px);
-    filter: blur(25px);
-  }
-
-  100% {
-    opacity: .5;
-    /* scale: 1.8; */
-    filter: blur(20px);
-    transform: translateX(0px)
-  }
-
-}
-
 @layer utilities {
   .menu-item {
-    @apply text-4xl mb-3 font-semibold cursor-pointer leading-10
-  }
-
-  .text-animation {
-    @apply pointer-events-none animate-[smoke_3s_linear_infinite]
+    @apply text-4xl mb-3 font-semibold leading-10
   }
 
   .flex-center {
@@ -94,7 +68,7 @@ canvas {
   }
 
   .nav-height {
-    @apply h-[calc(100vh-60px)]
+    @apply h-[calc(100vh-60px)] min-h-[555px] sm:max-h-[600px]
   }
 
   .btn {
@@ -174,7 +148,7 @@ canvas {
   }
 
   .video-carousel_container {
-    @apply relative sm:w-[70vw] w-[88vw] md:h-[70vh] sm:h-[50vh] h-[35vh]
+    @apply max-w-[1000px] max-h-[540px] w-[73vw] h-[39vw] xs:w-[90vw] xs:h-[48vw] xxs:w-[90vw] xxs:h-[48vw]
   }
 
   .g_fadeIn {

@@ -3,17 +3,17 @@ import { footerLinks } from '../constants'
 
 const Footer = () => {
   return (
-    <footer className="py-5 sm:px-10 px-5">
+    <footer className="py-7 sm:px-10 px-5">
       <div className="screen-max-width">
         <div>
           <p className="font-semibold text-gray-200 text-base">
             More ways to shop: {' '}
             <span className="underline text-blue">
-            Find an Apple Store {' '}
+              Find an Apple Store {' '}
             </span>
             or {' '}
             <span className="underline text-blue">
-            other retailer
+              other retailer
             </span>{' '}
             near you.
           </p>
@@ -24,15 +24,12 @@ const Footer = () => {
 
         <div className="bg-neutral-700 my-5 h-[1px] w-full" />
 
-        <div className="flex md:flex-row flex-col md:items-center justify-between">
-          <p className="font-semibold text-gray-200 text-base">Copright @ 2024 Apple Inc. All rights reserved.</p>
-          <div className="flex">
+        <div className="flex md:flex-row flex-col items-center gap-5 justify-between">
+          <p className="font-semibold text-gray-200 text-center md:text-nowrap text-base">Copyright @ 2024 Apple Inc. All rights reserved. <br /> Create by <a className='hover:text-white' href="https://github.com/Shivam-AK/" target='_blank'>Shivam Kumar</a> </p>
+          <div className="flex flex-wrap gap-y-1 justify-center">
             {footerLinks.map((link, i) => (
               <p key={link} className="font-semibold text-gray-200 text-base">
-                {link}{' '}
-                {i !== footerLinks.length - 1 && (
-                  <span className="mx-2"> | </span>
-                )}
+                {link}{i !== footerLinks.length - 1 && (<span className="mx-2">|</span>)}
               </p>
             ))}
           </div>

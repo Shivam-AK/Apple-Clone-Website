@@ -39,7 +39,7 @@ const Features = () => {
             </div>
 
             <div className='flex-center flex-col sm:px-10'>
-              <div className='flex flex-center relative h-[50vh] w-full'>
+              <div className='flex flex-center relative h-96 w-full'>
                 <video playsInline id='exploreVideo' className='w-full h-full object-cover object-center' preload='none' autoPlay muted ref={videoRef}>
                   <source src={exploreVideo} type='video/mp4' />
                 </video>
@@ -47,10 +47,10 @@ const Features = () => {
 
               <div className="flex flex-col w-full relative">
                 <div className="feature-video-container">
-                  <div className="overflow-hidden flex-1 h-[50vh]">
+                  <div className="overflow-hidden flex-1 h-96">
                     <img src={explore1Img} alt="titanium" className="feature-video g_grow" />
                   </div>
-                  <div className="overflow-hidden flex-1 h-[50vh]">
+                  <div className="overflow-hidden flex-1 h-96">
                     <img src={explore2Img} alt="titanium 2" className="feature-video g_grow" />
                   </div>
                 </div>

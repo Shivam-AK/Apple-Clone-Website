@@ -29,7 +29,7 @@ const HowItWorks = () => {
   })
 
   return (
-    <section className='common-padding'>
+    <section className='common-padding bg-zinc'>
       <div className='screen-max-width'>
         <div id='chip' className='flex-center w-full mb-20'>
           <img src={chipImg} alt="chip" width={180} height={180} />
@@ -52,7 +52,7 @@ const HowItWorks = () => {
               <img src={frameImg} alt="Frame" className='bg-transparent relative z-10' />
             </div>
 
-            <div className='hiw-video'>
+            <div className='hiw-video rounded-2xl'>
               <video playsInline muted autoPlay loop className='pointer-events-auto' preload='none' ref={videoRef}>
                 <source src={frameVideo} type='video/mp4' />
               </video>
