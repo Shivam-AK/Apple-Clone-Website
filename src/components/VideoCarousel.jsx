@@ -25,9 +25,10 @@ const VideoCarousel = () => {
 
     useGSAP(() => {
         // slider animation to move the video out of the screen and bring the next video in
+        console.log('video End', videoId)
         gsap.to('#slider', {
             transform: `translateX(${-100 * videoId}%)`,
-            duration: 2,
+            duration: 1.5,
             ease: 'power2.inOut' // show visualizer https://gsap.com/docs/v3/Eases
         })
 
@@ -44,18 +45,6 @@ const VideoCarousel = () => {
             }
         })
     }, [isEnd, videoId])
-
-    useEffect(() => {
-        if (loaderData.length > 3) {
-            if (!isPlaying) {
-                videoRef.current[videoId].pause()
-            } else {
-                startPlay && videoRef.current[videoId].play()
-            }
-        }
-    }, [startPlay, videoId, isPlaying, loaderData])
-
-    const handleLoaderMeteData = (i, event) => setLoaderData(prev => [...prev, event])
 
     useEffect(() => {
         let currentProgress = 0
@@ -90,7 +79,7 @@ const VideoCarousel = () => {
                 onComplete: () => {
                     if (isPlaying) {
                         gsap.to(videoDivRef.current[videoId], {
-                            width: 12
+                            width: '12px'
                         })
                         gsap.to(span[videoId], {
                             backgroundColor: '#afafaf'
@@ -106,7 +95,7 @@ const VideoCarousel = () => {
             // update the progress bar
             const animUpdate = () => {
                 anim.progress(
-                    videoRef?.current[videoId]?.currentTime / videoSlides[videoId].videoDuration
+                    videoRef?.current[videoId].currentTime / videoSlides[videoId].videoDuration
                 )
             }
 
@@ -121,12 +110,23 @@ const VideoCarousel = () => {
         }
     }, [videoId, startPlay])
 
+    useEffect(() => {
+        if (loaderData.length > 3) {
+            if (!isPlaying) {
+                videoRef.current[videoId].pause()
+            } else {
+                startPlay && videoRef.current[videoId].play()
+            }
+        }
+    }, [startPlay, videoId, isPlaying, loaderData])
+
     // video id is the id for every video until id becomes number 3
     const handleProcess = (type, i) => {
         switch (type) {
 
             case 'video-end':
-                setVideo(prevVideo => ({ ...prevVideo, isEnd: true, videoId: i++ }))
+                setVideo(prevVideo => ({ ...prevVideo, isEnd: true, videoId: i + 1 }))
+                console.log('video-end', i)
                 break
 
             case 'video-last':
@@ -159,6 +159,8 @@ const VideoCarousel = () => {
         }
     }
 
+    const handleLoaderMeteData = (i, event) => setLoaderData(prev => [...prev, event])
+
     return (
         <>
             <div className='flex items-center'>
@@ -173,11 +175,11 @@ const VideoCarousel = () => {
                                     muted
                                     playsInline={true}
                                     ref={ref => videoRef.current[i] = ref}
-                                    onPlay={() => {
+                                    onPlay={() => 
                                         setVideo(prevVideo => ({
                                             ...prevVideo, isPlaying: true
                                         }))
-                                    }}
+                                    }
                                     onEnded={() => i !== 3
                                         ? handleProcess('video-end', i)
                                         : handleProcess('video-last')
@@ -188,8 +190,8 @@ const VideoCarousel = () => {
                                 </video>
                             </div>
                             <div className='absolute top-[5%] left-[5%] z-10'>
-                                {list.textLists.map(text => (
-                                    <h4 key={text} className='text-xl md:text-2xl font-medium'>{text} </h4>
+                                {list.textLists.map((text, i) => (
+                                    <h4 key={i} className='text-xl md:text-2xl font-medium'>{text} </h4>
                                 ))}
                             </div>
                         </div>
@@ -225,7 +227,7 @@ const VideoCarousel = () => {
                             : () => handleProcess('pause')}>
                     <img
                         src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
-                        alt={isLastVideo ? 'repaly' : !isPlaying ? 'play' : 'pause'}
+                        alt={isLastVideo ? 'replay' : !isPlaying ? 'play' : 'pause'}
                     />
                 </button>
             </div>
