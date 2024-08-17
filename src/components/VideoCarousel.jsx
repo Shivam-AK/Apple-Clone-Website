@@ -121,7 +121,7 @@ const VideoCarousel = () => {
     }, [startPlay, videoId, isPlaying, loaderData])
 
     // video id is the id for every video until id becomes number 3
-    const handleProcess = (type, i) => {
+    function handleProcess(type, i) {
         switch (type) {
 
             case 'video-end':
